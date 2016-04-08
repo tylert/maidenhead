@@ -1,10 +1,11 @@
-#!/usr/bin/python
-# lonlat2maiden -- long/lat to Maidenhead grid calculator not limited to 6 characters
+#!/usr/bin/env python
+# ll2mh -- long/lat to Maidenhead grid calculator not limited to 6 characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
 # Created On      : Sat Mar 15 03:54:08 2003
-# Last Modified On: Fri Nov 28 06:00:24 2003
-# Update Count    : 175
+
+# rkanters 2004.2.20 version ll2mh
+
 import re,sys,string
 if len(sys.argv)==2: # slob city
     stringlength=string.atoi(sys.argv[1])
@@ -34,23 +35,21 @@ while 1:
     else:
         sys.stderr.write('latitude must be -90<=lat<90\n')
         sys.exit(33) #can't handle north pole, sorry, [A-R]
-    a=divmod(lon+180,20)
-    b=divmod(lat+90,10)
-    astring=chr(A+int(a[0]))+chr(A+int(b[0]))
-    lon=a[1]/2
-    lat=b[1]
-    i=1
+    lon=(lon+180.0)/20 # scale down and set up for first digit
+    lat=(lat+90.0)/10
+    astring=""
+    i=0
     while i<maxn:
         i+=1
-        a=divmod(lon,1)
-        b=divmod(lat,1)
-        if not(i%2):
-            astring+=str(int(a[0]))+str(int(b[0]))
-            lon=24*a[1]
-            lat=24*b[1]
+        loni=int(lon)
+        lati=int(lat)
+        if i%2:
+            astring+=chr(A+loni)+chr(A+lati)
+            lon=(lon-loni)*10
+            lat=(lat-lati)*10
         else:
-            astring+=chr(A+int(a[0]))+chr(A+int(b[0]))
-            lon=10*a[1]
-            lat=10*b[1]
+            astring+=str(loni)+str(lati)
+            lon=(lon-loni)*24
+            lat=(lat-lati)*24
     print astring
 #We return the grid square, to the precision given, that contains the given point.
