@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en-us">
+<head>
+ <meta name="viewport" content="width=device-width">
+ <meta http-equiv="Content-Type" content=
+ "text/html; charset=utf-8">
+ <meta http-equiv="Content-Language" content="en-us">
+
+ <title>Maidenhead grid long/lat calculator not limited to 6
+ characters</title>
+</head>
+
+<body>
+ <h1>Maidenhead grid -- longitude / latitude calculator not limited
+ to 6 characters</h1>
+
+ <p>The <a href=
+ "http://en.wikipedia.org/wiki/Maidenhead_Locator_System">Maidenhead
+ Locator System</a> is a grid system used by amateur radio
+ operators. I crudely implemented a Maidenhead grid to
+ longitude/latitude calculator, not limited to the 6 characters as
+ often seen with other programs. Written in a one-time <a href=
+ "http://www.python.org/">python</a> spree here on <a href=
+ "http://www.debian.org/">Debian GNU/Linux</a>. Download: <a href=
+ "programs/lonlat2maiden">lonlat2maiden</a>, <a href=
+ "programs/maiden2lonlat">maiden2lonlat</a>. See my <a href=
+ "notes.txt">notes</a>, <a href="programs/rkanters.zip">Kanters'
+ 2004</a>, <a href="http://www.g1ogy.com/projects/gps/">G1OGY's
+ 2008</a> augmentations.</p>
+
+ <p>First, in case you use DMS notation, convert it into decimal
+ degrees,</p>
+
+ <p><code>$ set 120d51\'57.74\"E 24d10\'54.14\"N ; echo
+ $@</code></p>
+
+ <p>120d51'57.74"E 24d10'54.14"N</p>
+
+ <p><code>$ set $(echo $@ | <a href=
+ "http://trac.osgeo.org/proj/">cs2cs</a> +proj=latlong -f %.8f) ;
+ echo $1 $2</code></p>
+
+ <p>120.86603889 24.18170556</p>
+
+ <p>Now we are ready to go,</p>
+
+ <p><code>$ echo $1 $2 | lonlat2maiden</code></p>
+
+ <p>PL04KE</p>
+
+ <p><code>#arbitrarily picking 22:</code></p>
+
+ <p><code>$ echo $1 $2 | lonlat2maiden 22</code></p>
+
+ <p>PL04KE33WO16WF07TP38UR</p>
+
+ <p><code>$ echo $1 $2 | lonlat2maiden 22 |
+ maiden2lonlat</code></p>
+
+ <p>120.86603889 24.18170556</p>
+
+ <p><code>$ echo $1 $2 | lonlat2maiden 22 | maiden2lonlat | cs2cs
+ +proj=latlong</code></p>
+
+ <p>120d51'57.74"E 24d10'54.14"N 0.000</p>
+
+ <p>By the way, as to just how many digits one needs for what
+ granularity, we examine what the smallest length one can
+ distinguish with the <em>latitude</em> parameter as we increase
+ string length:</p>
+ <pre>
+Len      meters example
+ 2 1111200.0000 PL
+ 4  111120.0000 PL04
+ 6    4630.0000 PL04KE
+ 8     463.0000 PL04KE33
+10 19.2917 PL04KE33WO
+12  1.9292 PL04KE33WO16
+14  0.0804 PL04KE33WO16WE
+16  0.0080 PL04KE33WO16WE57
+18  0.0003 PL04KE33WO16WE57NA
+</pre>
+
+ <p>So, to dazzle your friends with millimeter precision, one need
+ not make one's <a href="../../location/coordinates.html">vanity
+ Maidenhead locator</a> too long after all. (<a href=
+ "programs/significance">Code used to make above output</a>)</p>
+
+ <p>Hmmm, the Maidenhead system is sort of like <a href=
+ "../taipower/index.html">Taiwan Power Company grids</a>.</p>
+ <hr>
+
+ <address>
+  <a href="../../index.html">Dan Jacobson</a>
+ </address>
+
+ <p><!-- hhmts start -->Last modified:
+ 2015-02-15 08:57:21 +0800<!-- hhmts end --></p>
+</body>
+</html>
