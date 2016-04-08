@@ -1,0 +1,77 @@
+2004.2.20
+Hi Dan,
+
+I had the need to convert maidenhead to long/lat coordinates for a
+faculty member here who maintains a database with disasters around the
+world, so I searhced the web and found your python scripts. I am not a
+python programmer, but was able to convert your scripts into a set of
+Visual Basic functions for use in Excel, and into Coldfusion MX for a
+web based service.
+
+Since divmod is a particularly peculiar python function not available
+in VB type languages (I think), I rewrote the lonlat2maiden function.
+The file is enclosed (it is a little bit shorter, but I am not sure
+about the execution time differences). Notice that I also changed the
+algorithm a bit in that I create all the characters within the same
+loop, by first dividing out the first level grid sizes and setting the
+loop up to generate the character pair first.
+
+About the maiden2lonlat script. I think you would get a bit better
+performance (specially if you use the procedure a lot) if you were to
+expand the f function in the last loop. (I enclosed the mh2ll file
+also). That f function is indeed a stroke of genius. I had to wreck my
+mind for quite a while to figure it out.
+
+I noticed some conversion round-off errors when going from
+lonlat2maiden. I think the culprit is that for the last division the
+result is truncated (like all the other ones) where it probably should
+have been rounded. For instance I get:
+
+echo PL04KE | maiden2lonlat | lonlat2maiden
+PL04JE
+
+and the remainder can be seen:
+echo PL04KE | maiden2lonlat | lonlat2maiden 22
+PL04JE90XA90XA90XA90KC
+
+Thanks for sharing your code!!
+Cheers,
+René
+
+PS I hope the email stayed small enough :-)
+
+Hi Dan,
+
+Thanks for the reply.
+
+I know how you feel when you put a piece of code out there and years
+later get messages about it :-).
+
+I made what I consider my final modifications to two versions of the
+mh2ll (so I won't bother you again). The mh2ll3 is the implementation I
+use myself, while mh2ll2 is one where I made the calculation of the
+resolution of the grid by doing the continued division (i.e.,
+algorithmically the inverse of what is done in the ll2mh procedure). I
+opted for that since it is computationally less expensive (no
+background logarithms needed for the power raising functions). I added
+some extra comments to the mh2ll3 version.
+
+I also like short pieces of code (Occam's razor), and since I believe
+in garbage in--garbage out, I don't do much error checking (which will
+come back to haunt me some time).
+
+I would like to take you up on the offer of putting my email onto your
+page as "one user's improvements to there programs", only if you agree
+that they are improvements...
+
+Cheers,
+René
+
+René P.F Kanters, Ph.D.
+Director of Computer Assisted Science Education
+Department of Chemistry
+University of Richmond, Virginia 23173
+Phone: (804) 287-6873
+Fax: (804) 287-1897
+Email: rkanters@richmond.edu
+Web: http://www.richmond.edu/~rkanters

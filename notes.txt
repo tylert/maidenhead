@@ -1,0 +1,83 @@
+Notes by Dan Jacobson for http://jidanni.org/geo/maidenhead/
+
+2003:
+By the way, my programs, if polished to how I want them, would be
+simple batch processors, with no goofy graphical interface or side
+bells/whistles.
+
+Note, we return the coordinates of the southwest corner, not the
+center, of the grid square given.
+
+KJ7V> Why the SW corner?  Just curious.
+
+Well, with longitude and latitude input, If we keep choosing the
+halfway point of digits beyond what the user entered -- he says 49
+degrees, we assume 49.5, he says 49.5, we assume 49.75 -- then he'll
+never have a way to enter a stable value.  This is usually no
+question about this in daily life, except when dealing with grid
+square input instead of longitude and latitude.
+
+So I use the same strategy with maidenhead input.  As a bonus, for
+many values, allowing enough maidenhead digits, one can convert a
+point back and forth intact.
+
+2004.6.7
+W2IOL, http://home.earthlink.net/~rcmcc emails:
+R> In Feb 2003, K3RXK in QST said that, "The Maidenhead system actually
+R> extends beyond six characters..."  In a search, I can't find that
+R> definition at ARRL or anywhere, even what appears to be the official
+R> record of the Maidenhead meeting.  I will have to write him for a
+R> reference.  Do you have it?
+
+All I know is in /usr/share/doc/qgrid/html/index-4.html of the
+former qgrid Debian package, it said:
+	One can continue this process as long as you wish.  Zero to
+	nine for the numbers and A to X for the letters:
+	<let><let><num><num><let><let><num><num><let><let>....
+	(source: Bob Carpenter w3otc@amsat.org)
+We also see a
+	Qgrid Copyright 2001 Johan Maes - ON1MH, on1mh@pandora.be
+
+So that is probably what gave me the idea.
+
+I haven't used my bare knowledge of python after I wrote the program,
+and this area of my brain has shut down until further notice, as you
+can see by me just putting R. Kanter's stuff alongside, and not
+integrating it.
+Kanters notes
+$ echo PL04KE | maiden2lonlat | lonlat2maiden
+PL04JE
+but doesn't fix it either.
+
+From: "G1OGY (Dave)" <g1ogy@g1ogy.com>
+To: <jidanni@jidanni.org>
+Cc: <rkanters@richmond.edu>
+Subject: "gpsdll2mh" or lonlat2maidenhead with attitude
+Date: Fri, 14 Nov 2008 01:15:06 -0000
+
+Hello Dan, hello Rene
+
+This time it's been only 4 years between iterations.
+
+Many thanks to you both for the work you put in - I've shamelessly
+appropriated your code, changed it a bit, topped and tailed it and Boy!
+is it useful.
+
+Furthermore, it's perfectly accurate for 6-char Locators (most commonly
+used) and works throughout the globe.  Tested against
+http://www.qrz.com/gridfinder.
+
+Thanks again.
+
+http://www.g1ogy.com/projects/gps/
+
+73
+-Dave
+-- 
+Dave Gilligan, G1OGY
+_______________________________________
+
+United Kingdom.  JO01GR
+WWW: <www.g1ogy.com> <www.m1cro.org.uk>
+GSM: +44 (0)7764 784627
+
