@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 # mh2ll -- Maidenhead grid to long/lat calculator not limited to 6 characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
@@ -45,4 +46,4 @@ while 1:
             res /= 10.0
         i += 1
     lon *= 2
-    print lon, lat
+    print('{0} {1}'.format(lon, lat))

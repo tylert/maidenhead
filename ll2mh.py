@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 # ll2mh -- long/lat to Maidenhead grid calculator not limited to 6 characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
@@ -56,6 +57,6 @@ while 1:
             astring += str(loni) + str(lati)
             lon = (lon - loni) * 24
             lat = (lat - lati) * 24
-    print astring
+    print('{0}'.format(astring))
 # We return the grid square, to the precision given, that contains the
 # given point.
