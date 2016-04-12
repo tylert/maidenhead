@@ -1,13 +1,16 @@
 #!/usr/bin/env python
+
 # lonlat2maiden -- long/lat to Maidenhead grid calculator not limited to 6 characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
 # Created On      : Sat Mar 15 03:54:08 2003
 # Last Modified On: Fri Nov 28 06:00:24 2003
 # Update Count    : 175
+
 import re
 import sys
 import string
+
 if len(sys.argv) == 2:  # slob city
     stringlength = string.atoi(sys.argv[1])
     if stringlength < 2 or stringlength % 2 != 0:
@@ -15,8 +18,10 @@ if len(sys.argv) == 2:  # slob city
         sys.exit(87)
 else:
     stringlength = 6
+
 maxn = stringlength / 2
 A = ord('A')
+
 while 1:
     line = sys.stdin.readline()
     if not line:
@@ -57,6 +62,6 @@ while 1:
             astring += chr(A + int(a[0])) + chr(A + int(b[0]))
             lon = 10 * a[1]
             lat = 10 * b[1]
-    print astring
+    print('{0}'.format(astring))
 # We return the grid square, to the precision given, that contains the
 # given point.

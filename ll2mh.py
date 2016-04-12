@@ -10,6 +10,7 @@
 import re
 import sys
 import string
+
 if len(sys.argv) == 2:  # slob city
     stringlength = string.atoi(sys.argv[1])
     if stringlength < 2 or stringlength % 2 != 0:
@@ -17,8 +18,10 @@ if len(sys.argv) == 2:  # slob city
         sys.exit(87)
 else:
     stringlength = 6
+
 maxn = stringlength / 2
 A = ord('A')
+
 while 1:
     line = sys.stdin.readline()
     if not line:

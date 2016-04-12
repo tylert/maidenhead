@@ -1,12 +1,15 @@
 #!/usr/bin/env python
+
 # maiden2lonlat -- Maidenhead grid to long/lat calculator not limited to 6 characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
 # Created On      : Sat Mar 15 03:54:08 2003
 # Last Modified On: Fri Nov 28 05:58:24 2003
 # Update Count    : 333
+
 A = ord('A')
 safety = 22
+
 import re
 import sys
 import string
@@ -15,6 +18,7 @@ import string
 def f(z):
     # this is my stroke of genius or something
     return 10**(-(z - 1) / 2) * 24**(-z / 2)
+
 while 1:
     line = sys.stdin.readline()
     if not line:
@@ -52,4 +56,4 @@ while 1:
         lat += f(i - 1) * y
         i += 1
     lon *= 2
-    print lon, lat
+    print('{0} {1}'.format(lon, lat))

@@ -11,8 +11,10 @@
 # together:
 A = ord('A')
 Zero = ord('0')
+
 import sys
 import string
+
 # c2v converts a letter or digit to the value above A or 0 (assume no nonsence
 # characters passed to the function...
 # since it is used for both the longitude and latitude characters I made it
@@ -27,6 +29,7 @@ def c2v(c):
     else:
         v = c - Zero
     return v
+
 while 1:
     mh = sys.stdin.readline()
     if not mh:

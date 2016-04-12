@@ -9,9 +9,11 @@
 
 A = ord('A')
 safety = 22
+
 import re
 import sys
 import string
+
 while 1:
     line = sys.stdin.readline()
     if not line:
