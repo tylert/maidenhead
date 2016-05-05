@@ -151,8 +151,6 @@ try:
         if gps.PACKET_SET:
             gpsdSock.poll()
         if gpsdSock.fix.latitude:
-            # set a base value for the calcs.
-            A = ord('A')
             latlong = `gpsdSock.fix.latitude` +' ' + `gpsdSock.fix.longitude`
             # need float, numeric
 
@@ -202,7 +200,7 @@ try:
                 loni = int(glon)
                 lati = int(glat)
                 if i % 2:
-                    mhloc += chr(A + loni) + chr(A + lati)
+                    mhloc += chr(ord('A') + loni) + chr(ord('A') + lati)
                     glon = (glon - loni) * 10
                     glat = (glat - lati) * 10
                 else:

@@ -126,8 +126,6 @@ try:
                 break
             latlong = data[7:]
 
-            A = ord('A')                  # set a base value for the calcs.
-
 # Following commented code originally allowed for manual entry of the lat/long values -
 # I'll revisit this sometime so that there's a stand-alone option.
 # run the prog with a switch - it sits and waits for input: LAT.###### <space> LONG.###### [CR]
@@ -172,7 +170,7 @@ try:
                 loni = int(lon)
                 lati = int(lat)
                 if i % 2:
-                    mhloc += chr(A + loni) + chr(A + lati)
+                    mhloc += chr(ord('A') + loni) + chr(ord('A') + lati)
                     lon = (lon - loni) * 10
                     lat = (lat - lati) * 10
                 else:

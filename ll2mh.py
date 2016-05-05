@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 # ll2mh -- long/lat to Maidenhead grid calculator not limited to 6 characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
@@ -7,9 +8,11 @@
 
 # rkanters 2004.2.20 version ll2mh
 
+
 import re
 import sys
 import string
+
 
 if len(sys.argv) == 2:  # slob city
     stringlength = string.atoi(sys.argv[1])
@@ -20,7 +23,6 @@ else:
     stringlength = 6
 
 maxn = stringlength / 2
-A = ord('A')
 
 while 1:
     line = sys.stdin.readline()
@@ -53,7 +55,7 @@ while 1:
         loni = int(lon)
         lati = int(lat)
         if i % 2:
-            astring += chr(A + loni) + chr(A + lati)
+            astring += chr(ord('A') + loni) + chr(ord('A') + lati)
             lon = (lon - loni) * 10
             lat = (lat - lati) * 10
         else:

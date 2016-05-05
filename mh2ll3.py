@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 # mh2ll -- Maidenhead grid to long/lat calculator not limited to 6 characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
@@ -7,33 +8,23 @@
 
 # rkanters 2004.2.20 version mh2ll3
 
-# if one assumes no input errors, we could change the whole val stuff all
-# together:
-A = ord('A')
-Zero = ord('0')
 
 import sys
 import string
 
-# c2v converts a letter or digit to the value above A or 0 (assume no nonsence
-# characters passed to the function...
-# since it is used for both the longitude and latitude characters I made it
-# into a function as opposed to expanding the if/then/else twice in the
-# body code
-
 
 def c2v(c):
+    '''c2v converts a letter or digit to the value above A or 0 (assume no
+    nonsense characters passed to the function...'''
     c = ord(string.upper(c))
-    if c >= A:
-        v = c - A
+    if c >= ord('A'):
+        v = c - ord('A')
     else:
-        v = c - Zero
+        v = c - ord('0')
     return v
 
-while 1:
-    mh = sys.stdin.readline()
-    if not mh:
-        break
+
+def ll3(mh):
     lon = lat = -90.0
     i = 0
     res = 10.0  # the initial resolution of the grid in degrees
@@ -49,4 +40,12 @@ while 1:
             res /= 10.0
         i += 1
     lon *= 2
+    return lat, lon
+
+
+while 1:
+    mh = sys.stdin.readline()
+    if not mh:
+        break
+    lat, lon = ll3(mh)
     print('{0} {1}'.format(lon, lat))
