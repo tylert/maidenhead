@@ -30,7 +30,8 @@ def ll2(mh):
     for m in val:  # i seem to need an empty array
         val[m] = None  # so so silly
     for x, y in lets:
-        val[i * 2] = (ord(string.upper(x)) - ord('A'), ord(string.upper(y)) - ord('A'))
+        val[i * 2] = (ord(string.upper(x)) - ord('A'),
+                      ord(string.upper(y)) - ord('A'))
         i += 1
         tot += 1
     for x in val[0]:
