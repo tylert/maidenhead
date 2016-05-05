@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 # maiden2lonlat -- Maidenhead grid to long/lat calculator not limited to 6 characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
@@ -18,14 +19,11 @@ def f(z):
     return 10**(-(z - 1) / 2) * 24**(-z / 2)
 
 
-while 1:
-    line = sys.stdin.readline()
-    if not line:
-        break
-    lon = lat = -90
+def ll(mh):
+    lon = lat = -90.0
     # slob: assume no input errors
-    lets = re.findall(r'([A-Xa-x])([A-Xa-x])', line)
-    nums = re.findall(r'(\d)(\d)', line)  # slob: assume no input errors
+    lets = re.findall(r'([A-Xa-x])([A-Xa-x])', mh)
+    nums = re.findall(r'(\d)(\d)', mh)  # slob: assume no input errors
     if len(lets) + len(nums) > 22:
         # print sys.argv[0]+ ': you want more than', 22*2, 'digits'
         # how to do 1>&2 in python? I suppose:
@@ -56,4 +54,12 @@ while 1:
         lat += f(i - 1) * y
         i += 1
     lon *= 2
+    return lat, lon
+
+
+while 1:
+    mh = sys.stdin.readline()
+    if not mh:
+        break
+    lat, lon = ll(mh)
     print('{0} {1}'.format(lon, lat))
