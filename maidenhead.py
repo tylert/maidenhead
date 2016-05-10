@@ -89,7 +89,7 @@ def f(z):
     return 10**(-(z - 1) / 2) * 24**(-z / 2)
 
 
-def ll(mh):
+def ll1(mh):
     lon = lat = -90.0
     # slob: assume no input errors
     lets = re.findall(r'([A-Xa-x])([A-Xa-x])', mh)
@@ -127,7 +127,7 @@ def ll(mh):
     return lat, lon
 
 
-def mh(lat, lon, length=6):
+def mh2(lat, lon, length=6):
     if -180 <= lon < 180:
         pass
     else:
@@ -162,7 +162,7 @@ def mh(lat, lon, length=6):
     return astring
 
 
-def mh2(lat, lon, length=6):
+def mh1(lat, lon, length=6):
     if -180 <= lon < 180:
         pass
     else:

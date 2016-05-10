@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
 
-# lonlat2maiden -- long/lat to Maidenhead grid calculator not limited to 6 characters
+# ll2mh -- long/lat to Maidenhead grid calculator not limited to 6 characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
 # Created On      : Sat Mar 15 03:54:08 2003
-# Last Modified On: Fri Nov 28 06:00:24 2003
-# Update Count    : 175
+
+# rkanters 2004.2.20 version ll2mh
 
 
 import re

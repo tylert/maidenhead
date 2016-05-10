@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
 
-# ll2mh -- long/lat to Maidenhead grid calculator not limited to 6 characters
+# lonlat2maiden -- long/lat to Maidenhead grid calculator not limited to 6 characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
 # Created On      : Sat Mar 15 03:54:08 2003
-
-# rkanters 2004.2.20 version ll2mh
+# Last Modified On: Fri Nov 28 06:00:24 2003
+# Update Count    : 175
 
 
 import re
@@ -38,5 +38,5 @@ while 1:
         sys.stderr.write(sys.argv[0] + ': cannot even get the basic items\n')
         sys.exit(44)
 
-    astring = maidenhead.mh(lat, lon, stringlength)
+    astring = maidenhead.mh1(lat, lon, stringlength)
     print('{0}'.format(astring))
