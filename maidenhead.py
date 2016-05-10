@@ -125,3 +125,38 @@ def ll(mh):
         i += 1
     lon *= 2
     return lat, lon
+
+
+def mh(lat, lon, length=6):
+    if -180 <= lon < 180:
+        pass
+    else:
+        sys.stderr.write('longitude must be -180<=lon<180\n')
+        sys.exit(32)
+
+    if -90 <= lat < 90:
+        pass
+    else:
+        sys.stderr.write('latitude must be -90<=lat<90\n')
+        sys.exit(33)  # can't handle north pole, sorry, [A-R]
+
+    lon = (lon + 180.0) / 20  # scale down and set up for first digit
+    lat = (lat + 90.0) / 10
+    astring = ""
+    i = 0
+    while i < length / 2:
+        i += 1
+        loni = int(lon)
+        lati = int(lat)
+
+        if i % 2:
+            astring += chr(ord('A') + loni) + chr(ord('A') + lati)
+            lon = (lon - loni) * 10
+            lat = (lat - lati) * 10
+        else:
+            astring += str(loni) + str(lati)
+            lon = (lon - loni) * 24
+            lat = (lat - lati) * 24
+    # We return the grid square, to the precision given, that contains the
+    # given point.
+    return astring
