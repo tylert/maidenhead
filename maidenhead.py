@@ -160,3 +160,38 @@ def mh(lat, lon, length=6):
     # We return the grid square, to the precision given, that contains the
     # given point.
     return astring
+
+
+def mh2(lat, lon, length=6):
+    if -180 <= lon < 180:
+        pass
+    else:
+        sys.stderr.write('longitude must be -180<=lon<180\n')
+        sys.exit(32)
+
+    if -90 <= lat < 90:
+        pass
+    else:
+        sys.stderr.write('latitude must be -90<=lat<90\n')
+        sys.exit(33)  # can't handle north pole, sorry, [A-R]
+
+    a = divmod(lon + 180, 20)
+    b = divmod(lat + 90, 10)
+    astring = chr(ord('A') + int(a[0])) + chr(ord('A') + int(b[0]))
+    lon = a[1] / 2
+    lat = b[1]
+    i = 1
+    while i < length / 2:
+        i += 1
+        a = divmod(lon, 1)
+        b = divmod(lat, 1)
+
+        if not(i % 2):
+            astring += str(int(a[0])) + str(int(b[0]))
+            lon = 24 * a[1]
+            lat = 24 * b[1]
+        else:
+            astring += chr(ord('A') + int(a[0])) + chr(ord('A') + int(b[0]))
+            lon = 10 * a[1]
+            lat = 10 * b[1]
+    return astring

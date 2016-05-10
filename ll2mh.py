@@ -23,6 +23,7 @@ if len(sys.argv) == 2:  # slob city
 else:
     stringlength = 6
 
+
 while 1:
     line = sys.stdin.readline()
     if not line:
