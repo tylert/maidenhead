@@ -1,9 +1,9 @@
+- replace all the sys.exit junk with proper exception stuff
 - create wrapper object to store/expose attributes of grids:
   - corner points
   - middle point
   - area?
   - average elevation?
-  (shapely)
 - improve the CLI wrapper
   (docopt)
 - add tests
