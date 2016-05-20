@@ -1,2 +1,5 @@
+argparse==1.2.1
 autopep8==1.2.2
+docopt==0.6.2
 pep8==1.7.0
+wsgiref==0.1.2
