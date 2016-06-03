@@ -18,4 +18,4 @@ while 1:
     if not mh:
         break
     lat, lon = maidenhead.ll2(mh)
-    print('{0} {1}'.format(lon, lat))
+    print('{0} {1}'.format(lat, lon))

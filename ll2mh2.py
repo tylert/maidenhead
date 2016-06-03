@@ -31,9 +31,9 @@ while 1:
     ll = re.findall(r'([-0-9.]+)\s+([-0-9.]+)', line)
 
     if ll:
-        for x, y in ll:
-            lon = string.atof(x)
-            lat = string.atof(y)
+        for leftval, rightval in ll:
+            lat = string.atof(leftval)
+            lon = string.atof(rightval)
     else:
         sys.stderr.write(sys.argv[0] + ': cannot even get the basic items\n')
         sys.exit(44)
