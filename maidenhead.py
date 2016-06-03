@@ -12,22 +12,34 @@ import string
 #from docopt import docopt
 
 
+class RangeError(Exception):
+    def __init__(self, arg):
+        self.args = arg
+
+
 def c2v(c):
+
     '''c2v converts a letter or digit to the value above A or 0 (assume no
     nonsense characters passed to the function...'''
+
     c = ord(string.upper(c))
+
     if c >= ord('A'):
         v = c - ord('A')
     else:
         v = c - ord('0')
+
     return v
 
 
 def ll3(mh):
-    lon = lat = -90.0
+
+    lat = -90.0
+    lon = -90.0
     i = 0
     res = 10.0  # the initial resolution of the grid in degrees
     npair = len(mh) / 2
+
     while i < npair:
         lon += res * c2v(mh[2 * i])
         lat += res * c2v(mh[2 * i + 1])
@@ -38,41 +50,49 @@ def ll3(mh):
         else:
             res /= 10.0
         i += 1
+
     lon *= 2
+
     return lat, lon
 
 
 def ll2(mh):
-    lon = lat = -90.0
+
+    lat = -90.0
+    lon = -90.0
     # slob: assume no input errors
     lets = re.findall(r'([A-Xa-x])([A-Xa-x])', mh)
     nums = re.findall(r'(\d)(\d)', mh)  # slob: assume no input errors
+
     if len(lets) + len(nums) > 22:
-        # print sys.argv[0]+ ': you want more than', 22*2, 'digits'
-        # how to do 1>&2 in python? I suppose:
-        sys.stderr.write(
-            sys.argv[0] + ': you want more than ' + str(22 * 2) + ' digits\n')
-        sys.exit(22)  # crappy length check
+        raise RangeError('You asked for more than 22 digits.')
+
     i = tot = 0
     val = range(0, 22)  # sorry I don't know how to do this
+
     for m in val:  # i seem to need an empty array
         val[m] = None  # so so silly
+
     for x, y in lets:
         val[i * 2] = (ord(string.upper(x)) - ord('A'),
                       ord(string.upper(y)) - ord('A'))
         i += 1
         tot += 1
+
     for x in val[0]:
-        if x >= 18:  # only now do we do a crappy error check for S...
-            sys.stderr.write('invalid data in first two letters\n')
-            sys.exit(37)
+        if x >= 18:
+            raise RangeError('Invalid data in first 2 letters.')
+
     i = 0
+
     for x, y in nums:
         val[i * 2 + 1] = (string.atoi(x), string.atoi(y))
         i += 1
         tot += 1
+
     i = 0
     res = 10.0
+
     for x, y in val[0:min(tot, 22 - 1)]:
         lon += res * x
         lat += res * y
@@ -81,69 +101,81 @@ def ll2(mh):
         else:
             res /= 10.0
         i += 1
+
     lon *= 2
+
     return lat, lon
 
 
 def f(z):
+
     return 10**(-(z - 1) / 2) * 24**(-z / 2)
 
 
 def ll1(mh):
-    lon = lat = -90.0
+
+    lat = -90.0
+    lon = -90.0
     # slob: assume no input errors
     lets = re.findall(r'([A-Xa-x])([A-Xa-x])', mh)
     nums = re.findall(r'(\d)(\d)', mh)  # slob: assume no input errors
+
     if len(lets) + len(nums) > 22:
-        # print sys.argv[0]+ ': you want more than', 22*2, 'digits'
-        # how to do 1>&2 in python? I suppose:
-        sys.stderr.write(
-            sys.argv[0] + ': you want more than ' + str(22 * 2) + ' digits\n')
-        sys.exit(22)  # crappy length check
+        raise RangeError('You asked for more than 22 digits.')
+
     i = tot = 0
     val = range(0, 22)  # sorry I don't know how to do this
+
     for m in val:  # i seem to need an empty array
         val[m] = None  # so so silly
+
     for x, y in lets:
         val[i * 2] = (ord(string.upper(x)) - ord('A'),
                       ord(string.upper(y)) - ord('A'))
         i += 1
         tot += 1
+
     for x in val[0]:
-        if x >= 18:  # only now do we do a crappy error check for S...
-            sys.stderr.write('invalid data in first two letters\n')
-            sys.exit(37)
+        if x >= 18:
+            raise RangeError('Invalid data in first 2 letters.')
+
     i = 0
+
     for x, y in nums:
         val[i * 2 + 1] = (string.atoi(x), string.atoi(y))
         i += 1
         tot += 1
+
     i = 0
+
     for x, y in val[0:min(tot, 22 - 1)]:
         lon += f(i - 1) * x
         lat += f(i - 1) * y
         i += 1
+
     lon *= 2
+
     return lat, lon
 
 
 def mh2(lat, lon, length=6):
-    if -180 <= lon < 180:
-        pass
-    else:
-        sys.stderr.write('longitude must be -180<=lon<180\n')
-        sys.exit(32)
 
     if -90 <= lat < 90:
         pass
     else:
-        sys.stderr.write('latitude must be -90<=lat<90\n')
-        sys.exit(33)  # can't handle north pole, sorry, [A-R]
+        # can't handle north pole, sorry, [A-R]
+        raise RangeError('Latitude must be between -90 and 90.')
+
+    if -180 <= lon < 180:
+        pass
+    else:
+        raise RangeError('Longitude must be between -180 and 180.')
 
     lon = (lon + 180.0) / 20  # scale down and set up for first digit
     lat = (lat + 90.0) / 10
     astring = ""
     i = 0
+
     while i < length / 2:
         i += 1
         loni = int(lon)
@@ -157,23 +189,22 @@ def mh2(lat, lon, length=6):
             astring += str(loni) + str(lati)
             lon = (lon - loni) * 24
             lat = (lat - lati) * 24
-    # We return the grid square, to the precision given, that contains the
-    # given point.
+
     return astring
 
 
 def mh1(lat, lon, length=6):
-    if -180 <= lon < 180:
-        pass
-    else:
-        sys.stderr.write('longitude must be -180<=lon<180\n')
-        sys.exit(32)
 
     if -90 <= lat < 90:
         pass
     else:
-        sys.stderr.write('latitude must be -90<=lat<90\n')
-        sys.exit(33)  # can't handle north pole, sorry, [A-R]
+        # can't handle north pole, sorry, [A-R]
+        raise RangeError('Latitude must be between -90 and 90.')
+
+    if -180 <= lon < 180:
+        pass
+    else:
+        raise RangeError('Longitude must be between -180 and 180.')
 
     a = divmod(lon + 180, 20)
     b = divmod(lat + 90, 10)
@@ -181,6 +212,7 @@ def mh1(lat, lon, length=6):
     lon = a[1] / 2
     lat = b[1]
     i = 1
+
     while i < length / 2:
         i += 1
         a = divmod(lon, 1)
@@ -194,6 +226,7 @@ def mh1(lat, lon, length=6):
             astring += chr(ord('A') + int(a[0])) + chr(ord('A') + int(b[0]))
             lon = 10 * a[1]
             lat = 10 * b[1]
+
     return astring
 
 

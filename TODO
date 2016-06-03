@@ -1,4 +1,3 @@
-- replace all the sys.exit junk with proper exception stuff
 - create wrapper object to store/expose attributes of grids:
   - corner points
   - middle point
