@@ -5,5 +5,3 @@
   - average elevation?
 - improve the CLI wrapper
   (docopt)
-- add tests
-  (pytest)
