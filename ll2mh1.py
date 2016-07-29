@@ -28,10 +28,10 @@ while 1:
     line = sys.stdin.readline()
     if not line:
         break
-    ll = re.findall(r'([-0-9.]+)\s+([-0-9.]+)', line)
+    latlon = re.findall(r'([-0-9.]+)\s+([-0-9.]+)', line)
 
-    if ll:
-        for leftval, rightval in ll:
+    if latlon:
+        for leftval, rightval in latlon:
             lat = string.atof(leftval)
             lon = string.atof(rightval)
     else:

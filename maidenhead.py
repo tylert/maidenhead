@@ -18,16 +18,16 @@ class RangeError(Exception):
         self.args = arg
 
 
-class MaidenheadGrid():
+class Maidenhead():
 
     def __init__(self, gridsquare):
-        self.gridsquare = gridsquare
+        self.gridsquare = gridsquare.upper()
 
     def __repr__(self):
         return self.gridsquare
 
     def latlon(self):
-        print(latlon3(self.gridsquare))
+        return latlon3(self.gridsquare)
 
 
 def c2v(c):

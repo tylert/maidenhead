@@ -17,5 +17,5 @@ while 1:
     mh = sys.stdin.readline()
     if not mh:
         break
-    lat, lon = maidenhead.ll1(mh)
+    lat, lon = maidenhead.latlon1(mh)
     print('{0} {1}'.format(lat, lon))
