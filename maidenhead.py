@@ -13,8 +13,21 @@ import string
 
 
 class RangeError(Exception):
+
     def __init__(self, arg):
         self.args = arg
+
+
+class MaidenheadGrid():
+
+    def __init__(self, gridsquare):
+        self.gridsquare = gridsquare
+
+    def __repr__(self):
+        return self.gridsquare
+
+    def latlon(self):
+        print(latlon3(self.gridsquare))
 
 
 def c2v(c):
@@ -32,7 +45,7 @@ def c2v(c):
     return v
 
 
-def ll3(mh):
+def latlon3(mh):
 
     lat = -90.0
     lon = -90.0
@@ -56,7 +69,7 @@ def ll3(mh):
     return lat, lon
 
 
-def ll2(mh):
+def latlon2(mh):
 
     lat = -90.0
     lon = -90.0
@@ -112,7 +125,7 @@ def f(z):
     return 10**(-(z - 1) / 2) * 24**(-z / 2)
 
 
-def ll1(mh):
+def latlon1(mh):
 
     lat = -90.0
     lon = -90.0

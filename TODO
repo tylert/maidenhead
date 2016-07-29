@@ -1,7 +1,8 @@
-- create wrapper object to store/expose attributes of grids:
+- expose attributes of grids:
   - corner points
   - middle point
   - area?
   - average elevation?
+  - resolution
 - improve the CLI wrapper
   (docopt)
