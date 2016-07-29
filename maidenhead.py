@@ -9,7 +9,6 @@
 import re
 import sys
 import string
-#from docopt import docopt
 
 
 class RangeError(Exception):
@@ -241,6 +240,3 @@ def mh1(lat, lon, length=6):
             lat = 10 * b[1]
 
     return astring
-
-
-#if __name__ == '__main__':
