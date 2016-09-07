@@ -21,8 +21,7 @@ def main():
     if len(sys.argv) == 2:  # slob city
         stringlength = string.atoi(sys.argv[1])
         if stringlength < 2 or stringlength % 2 != 0:
-            sys.stderr.write('string length requested must be even integer > 0\n')
-            sys.exit(87)
+            raise RuntimeError('String length requested must be even integer > 0.')
     else:
         stringlength = 6
 
@@ -38,8 +37,7 @@ def main():
                 lat = string.atof(leftval)
                 lon = string.atof(rightval)
         else:
-            sys.stderr.write(sys.argv[0] + ': cannot even get the basic items\n')
-            sys.exit(44)
+            raise RuntimeError('Cannot even get the basic items.')
 
         astring = maidenhead.mh2(lat, lon, stringlength)
         print('{0}'.format(astring))

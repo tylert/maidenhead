@@ -13,14 +13,14 @@ import string
 
 class RangeError(Exception):
 
-    def __init__(self, arg):
-        self.args = arg
+    def __init__(self, args):
+        self.args = args
 
 
 class Maidenhead():
 
-    def __init__(self, gridsquare):
-        self.gridsquare = gridsquare.upper()
+    def __init__(self):
+        pass
 
     def __repr__(self):
         return self.gridsquare
@@ -185,7 +185,7 @@ def mh2(lat, lon, length=6):
 
     lon = (lon + 180.0) / 20  # scale down and set up for first digit
     lat = (lat + 90.0) / 10
-    astring = ""
+    astring = ''
     i = 0
 
     while i < length / 2:
