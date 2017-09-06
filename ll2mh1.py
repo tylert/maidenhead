@@ -1,18 +1,20 @@
 #!/usr/bin/env python
 
-
-# lonlat2maiden -- long/lat to Maidenhead grid calculator not limited to 6 characters
+# lonlat2maiden -- long/lat to Maidenhead grid calculator not limited to 6
+#                  characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
 # Created On      : Sat Mar 15 03:54:08 2003
-# Last Modified On: Fri Nov 28 06:00:24 2003
-# Update Count    : 175
 
+
+from __future__ import print_function
 
 import re
 import sys
 import string
-from docopt import docopt
+
+# from docopt import docopt
+
 import maidenhead
 
 
@@ -21,10 +23,10 @@ def main():
     if len(sys.argv) == 2:  # slob city
         stringlength = string.atoi(sys.argv[1])
         if stringlength < 2 or stringlength % 2 != 0:
-            raise RuntimeError('String length requested must be even integer > 0.')
+            raise RuntimeError('String length requested must be even '
+                               'integer > 0.')
     else:
         stringlength = 6
-
 
     while 1:
         line = sys.stdin.readline()

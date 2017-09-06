@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 
-
 # mh2ll -- Maidenhead grid to long/lat calculator not limited to 6 characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
 # Created On      : Sat Mar 15 03:54:08 2003
-
 # rkanters 2004.2.20 version mh2ll3
 
 
+from __future__ import print_function
+
 import sys
-from docopt import docopt
+
+# from docopt import docopt
+
 import maidenhead
 
 
