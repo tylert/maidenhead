@@ -13,8 +13,6 @@ import re
 import sys
 import string
 
-# from docopt import docopt
-
 import maidenhead
 
 

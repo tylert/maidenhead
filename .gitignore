@@ -1,6 +1,4 @@
 .DS_Store
 .*.sw?
-*.pyc
-*.pyo
-venv/
-.cache/
+*.py[co]
+__pycache__/

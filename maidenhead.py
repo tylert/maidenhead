@@ -46,6 +46,8 @@ def c2v(c):
 
 def latlon3(mh):
 
+    ''''''
+
     lat = -90.0
     lon = -90.0
     i = 0
@@ -69,6 +71,8 @@ def latlon3(mh):
 
 
 def latlon2(mh):
+
+    ''''''
 
     lat = -90.0
     lon = -90.0
@@ -121,10 +125,14 @@ def latlon2(mh):
 
 def f(z):
 
+    ''''''
+
     return 10**(-(z - 1) / 2) * 24**(-z / 2)
 
 
 def latlon1(mh):
+
+    ''''''
 
     lat = -90.0
     lon = -90.0
@@ -172,6 +180,8 @@ def latlon1(mh):
 
 def mh2(lat, lon, length=6):
 
+    ''''''
+
     if -90 <= lat < 90:
         pass
     else:
@@ -206,6 +216,8 @@ def mh2(lat, lon, length=6):
 
 
 def mh1(lat, lon, length=6):
+
+    ''''''
 
     if -90 <= lat < 90:
         pass
