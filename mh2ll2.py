@@ -7,8 +7,6 @@
 # rkanters 2004.2.20 version mh2ll2
 
 
-from __future__ import print_function
-
 import sys
 
 import maidenhead

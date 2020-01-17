@@ -7,8 +7,6 @@
 # Created On      : Sat Mar 15 03:54:08 2003
 
 
-from __future__ import print_function
-
 import re
 import sys
 import string

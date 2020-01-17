@@ -1,0 +1,4 @@
+autopep8
+Click
+pycodestyle
+pytest
