@@ -83,11 +83,9 @@ def latlon2(mh):
     if len(lets) + len(nums) > 22:
         raise RangeError('You asked for more than 22 digits.')
 
-    i = tot = 0
-    val = range(0, 22)  # sorry I don't know how to do this
-
-    for m in val:  # i seem to need an empty array
-        val[m] = None  # so so silly
+    i = 0
+    tot = 0
+    val = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     for x, y in lets:
         val[i * 2] = (ord(x.upper()) - ord('A'),
@@ -116,63 +114,6 @@ def latlon2(mh):
             res /= 24.0
         else:
             res /= 10.0
-        i += 1
-
-    lon *= 2
-
-    return lat, lon
-
-
-def f(z):
-
-    '''
-    '''
-
-    return 10**(-(z - 1) / 2) * 24**(-z / 2)
-
-
-def latlon1(mh):
-
-    '''
-    '''
-
-    lat = -90.0
-    lon = -90.0
-    # slob: assume no input errors
-    lets = re.findall(r'([A-Xa-x])([A-Xa-x])', mh)
-    nums = re.findall(r'(\d)(\d)', mh)  # slob: assume no input errors
-
-    if len(lets) + len(nums) > 22:
-        raise RangeError('You asked for more than 22 digits.')
-
-    i = tot = 0
-    val = range(0, 22)  # sorry I don't know how to do this
-
-    for m in val:  # i seem to need an empty array
-        val[m] = None  # so so silly
-
-    for x, y in lets:
-        val[i * 2] = (ord(x.upper()) - ord('A'),
-                      ord(y.upper()) - ord('A'))
-        i += 1
-        tot += 1
-
-    for x in val[0]:
-        if x >= 18:
-            raise RangeError('Invalid data in first 2 letters.')
-
-    i = 0
-
-    for x, y in nums:
-        val[i * 2 + 1] = (int(x), int(y))
-        i += 1
-        tot += 1
-
-    i = 0
-
-    for x, y in val[0:min(tot, 22 - 1)]:
-        lon += f(i - 1) * x
-        lat += f(i - 1) * y
         i += 1
 
     lon *= 2

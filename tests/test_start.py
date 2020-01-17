@@ -2,9 +2,6 @@ import maidenhead
 
 
 class TestMaidenhead:
-    def test_one(self):
-        assert maidenhead.latlon1(mh='FN25AI') == (45.333333333333336, -76.0)
-
     def test_two(self):
         assert maidenhead.latlon2(mh='FN25AI') == (45.333333333333336, -76.0)
 
