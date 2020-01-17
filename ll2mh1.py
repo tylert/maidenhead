@@ -1,23 +1,16 @@
 #!/usr/bin/env python
 
-# lonlat2maiden -- long/lat to Maidenhead grid calculator not limited to 6
-#                  characters
-# Copyright       : http://www.fsf.org/copyleft/gpl.html
-# Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
-# Created On      : Sat Mar 15 03:54:08 2003
 
-
-import re
 import sys
-import string
+from re import findall
 
-import maidenhead
+from maidenhead import mh1
 
 
 def main():
 
     if len(sys.argv) == 2:  # slob city
-        stringlength = string.atoi(sys.argv[1])
+        stringlength = int(sys.argv[1])
         if stringlength < 2 or stringlength % 2 != 0:
             raise RuntimeError('String length requested must be even '
                                'integer > 0.')
@@ -28,16 +21,16 @@ def main():
         line = sys.stdin.readline()
         if not line:
             break
-        latlon = re.findall(r'([-0-9.]+)\s+([-0-9.]+)', line)
+        latlon = findall(r'([-0-9.]+)\s+([-0-9.]+)', line)
 
         if latlon:
             for leftval, rightval in latlon:
-                lat = string.atof(leftval)
-                lon = string.atof(rightval)
+                lat = float(leftval)
+                lon = float(rightval)
         else:
             raise RuntimeError('Cannot even get the basic items.')
 
-        astring = maidenhead.mh1(lat, lon, stringlength)
+        astring = mh1(lat, lon, stringlength)
         print('{0}'.format(astring))
 
 

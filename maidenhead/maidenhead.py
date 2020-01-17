@@ -1,12 +1,12 @@
-# mh2ll1 -- Maidenhead grid to long/lat calculator not limited to 6 characters
+# mh2ll -- Maidenhead grid to long/lat calculator not limited to 6 characters
+# ll2mh -- long/lat to Maidenhead grid calculator not limited to 6 characters
 # Copyright       : http://www.fsf.org/copyleft/gpl.html
 # Author          : Dan Jacobson -- http://jidanni.org/geo/maidenhead/
 # Created On      : Sat Mar 15 03:54:08 2003
+# rkanters 2004.2.20 version mh2ll,ll2mh
 
-# rkanters 2004.2.20 version mh2ll2,3
 
-
-import re
+from re import findall
 
 
 class RangeError(Exception):
@@ -77,8 +77,8 @@ def latlon2(mh):
     lat = -90.0
     lon = -90.0
     # slob: assume no input errors
-    lets = re.findall(r'([A-Xa-x])([A-Xa-x])', mh)
-    nums = re.findall(r'(\d)(\d)', mh)  # slob: assume no input errors
+    lets = findall(r'([A-Xa-x])([A-Xa-x])', mh)
+    nums = findall(r'(\d)(\d)', mh)  # slob: assume no input errors
 
     if len(lets) + len(nums) > 22:
         raise RangeError('You asked for more than 22 digits.')

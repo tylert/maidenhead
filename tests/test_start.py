@@ -1,15 +1,15 @@
-import maidenhead
+from maidenhead import (latlon2, latlon3, mh1, mh2)
 
 
 class TestMaidenhead:
     def test_two(self):
-        assert maidenhead.latlon2(mh='FN25AI') == (45.333333333333336, -76.0)
+        assert latlon2(mh='FN25AI') == (45.333333333333336, -76.0)
 
     def test_three(self):
-        assert maidenhead.latlon3(mh='FN25AI') == (45.333333333333336, -76.0)
+        assert latlon3(mh='FN25AI') == (45.333333333333336, -76.0)
 
     def test_four(self):
-        assert maidenhead.mh1(lat=45.3333333333, lon=-76.0) == 'FN25AH'
+        assert mh1(lat=45.3333333333, lon=-76.0) == 'FN25AH'
 
     def test_five(self):
-        assert maidenhead.mh2(lat=45.3333333333, lon=-76.0) == 'FN25AH'
+        assert mh2(lat=45.3333333333, lon=-76.0) == 'FN25AH'
