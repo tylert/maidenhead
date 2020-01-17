@@ -1,8 +1,0 @@
-- expose attributes of grids:
-  - corner points
-  - middle point
-  - area?
-  - average elevation?
-  - resolution
-- improve the CLI wrapper
-  (docopt)
