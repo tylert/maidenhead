@@ -7,8 +7,6 @@
 
 
 import re
-import sys
-import string
 
 
 class RangeError(Exception):
@@ -34,7 +32,7 @@ def c2v(c):
     '''c2v converts a letter or digit to the value above A or 0 (assume no
     nonsense characters passed to the function...'''
 
-    c = ord(string.upper(c))
+    c = ord(c.upper())
 
     if c >= ord('A'):
         v = c - ord('A')
@@ -92,8 +90,8 @@ def latlon2(mh):
         val[m] = None  # so so silly
 
     for x, y in lets:
-        val[i * 2] = (ord(string.upper(x)) - ord('A'),
-                      ord(string.upper(y)) - ord('A'))
+        val[i * 2] = (ord(x.upper()) - ord('A'),
+                      ord(y.upper()) - ord('A'))
         i += 1
         tot += 1
 
@@ -104,7 +102,7 @@ def latlon2(mh):
     i = 0
 
     for x, y in nums:
-        val[i * 2 + 1] = (string.atoi(x), string.atoi(y))
+        val[i * 2 + 1] = (int(x), int(y))
         i += 1
         tot += 1
 
@@ -154,8 +152,8 @@ def latlon1(mh):
         val[m] = None  # so so silly
 
     for x, y in lets:
-        val[i * 2] = (ord(string.upper(x)) - ord('A'),
-                      ord(string.upper(y)) - ord('A'))
+        val[i * 2] = (ord(x.upper()) - ord('A'),
+                      ord(y.upper()) - ord('A'))
         i += 1
         tot += 1
 
@@ -166,7 +164,7 @@ def latlon1(mh):
     i = 0
 
     for x, y in nums:
-        val[i * 2 + 1] = (string.atoi(x), string.atoi(y))
+        val[i * 2 + 1] = (int(x), int(y))
         i += 1
         tot += 1
 
