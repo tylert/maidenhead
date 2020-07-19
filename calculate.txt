@@ -1,0 +1,71 @@
+(From https://www.dxzone.com/grid-square-locator-system-explained/)
+
+
+Field Calculation
+
+The world is divided into a 18×18 fields, measuring 20°x10°.  The first
+operation is to add to longitude, 180° in order to work with positive numbers,
+since we need to determine a non-negative number. Afterward we will divide the
+reuslt by 20 (degrees) and we will consider the integer number obtained and its
+remainder.  The letter, will correspond to the obtained number. Same
+calculation but adding 90 (degrees) and dividing by 10 times for Latitude.
+
+ A B C D E F G H I J K  L  M  N  O  P  Q  R
+ 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17
+
+Longitude: 18.388544 degrees
+= 18.388 + 180
+= 198.388
+= 198.388 / 20
+= 9 + remainder 18.388
+= J (location in 10th zone)
+
+Latitude : -33.931833 degrees
+= -33.931833 + 90
+= 56.068167
+= 56.068167 / 10
+= 5 remainder 6.068167
+= F (location in 6th zone)
+
+Resulting Field is: JF
+
+
+Square Calculation
+
+We know that each Field is divided into 10×10 squares, measuring 2° x 1° each.
+We will consider the remainders of previous Field calculation.
+
+Longitude = 18.388
+= 18.388 / 2
+= 9 remainder (0.388)
+= 9 (location in 9th zone)
+
+Latitude = 6.068167
+= 6.068167 / 1
+= 6 remainder (0.68167)
+= 6 location (location in 6th zone)
+
+Resulting Square is: 96
+
+
+Sub-Square calculation
+
+Each sub-square is divided into 24×24 sub-squares, measuring 5 minutes
+(0.083333 degrees) x2.5 minute (0.0416665 degrees).
+
+The letter, will be the corresponding number.
+
+ A B C D E F G H I J K  L  M  N  O  P  Q  R  S  T  U  V  W  X
+ 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+
+Longitude = 0.388
+= 0.388 : 0.083333
+= 4 remainder 0,097
+= E (location in 5th zone)
+
+Latitude = 0.68167
+= 0.68167 / 0.0416
+= 1 remainder 0.638
+= B (location in 2nd zone)
+
+Resulting Sub-Square: EB
