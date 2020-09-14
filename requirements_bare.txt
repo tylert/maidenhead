@@ -1,4 +1,4 @@
 autopep8
-Click
+click
 pycodestyle
 pytest
