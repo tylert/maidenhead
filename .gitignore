@@ -1,6 +1,6 @@
 .DS_Store
 .*.sw?
-.venv/
+*.py[coz]
 __pycache__/
-*.py[co]
+.venv/
 .pytest_cache/
