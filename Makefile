@@ -1,21 +1,45 @@
 SHELL := /usr/bin/env bash
 
 PYTHON ?= python
-VENV_DIR ?= .venv
+VENV ?= .venv
 
-# .SUFFIXES:
-# .SUFFIXES: .yaml .preseed .vagrant .json .iso .ova .box
+GENERATED_FILES =
 
-# .PRECIOUS: .yaml .preseed .vagrant
+.SUFFIXES:
+.SUFFIXES: .py
+.PRECIOUS: .py
 
 .PHONY: all
-all: build
+all: venv
 
-ACTIVATE = $(VENV_DIR)/bin/activate
-.PHONY: requirements
-requirements:
-	@test -d $(VENV_DIR) || $(PYTHON) -m venv $(VENV_DIR) && \
-    source $(ACTIVATE) && \
-    pip install --requirement requirements_bare.txt && \
-    pip freeze > requirements.txt && \
-    rm -rf $(VENV_DIR)
+ACTIVATE_SCRIPT = $(VENV)/bin/activate
+.PHONY: venv
+venv: $(ACTIVATE_SCRIPT)
+$(ACTIVATE_SCRIPT): requirements.txt
+	@test -d $(VENV) || $(PYTHON) -m venv $(VENV) && \
+  source $(ACTIVATE_SCRIPT) && \
+  pip install --upgrade pip setuptools && \
+  pip install --requirement $< && \
+  touch $(ACTIVATE_SCRIPT)
+
+.PHONY: venv_upgrade
+venv_upgrade:
+	@rm -rf $(VENV) && \
+  $(PYTHON) -m venv $(VENV) && \
+  source $(ACTIVATE_SCRIPT) && \
+  pip install --upgrade pip setuptools && \
+  pip install --requirement requirements_bare.txt && \
+  pip freeze > requirements.txt && \
+  touch $(ACTIVATE_SCRIPT)
+
+# moo:
+#   @source $(ACTIVATE_SCRIPT) && \
+#   ./moo.py > $@
+
+.PHONY: clean
+clean:
+	@rm -rf $(GENERATED_FILES)
+
+.PHONY: reallyclean
+reallyclean: clean
+	@rm -rf $(VENV)

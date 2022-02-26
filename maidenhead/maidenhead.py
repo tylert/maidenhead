@@ -10,13 +10,11 @@ from re import findall
 
 
 class RangeError(Exception):
-
     def __init__(self, args):
         self.args = args
 
 
-class Maidenhead():
-
+class Maidenhead:
     def __init__(self):
         pass
 
@@ -44,8 +42,7 @@ def c2v(c):
 
 def latlon3(mh):
 
-    '''
-    '''
+    ''' '''
 
     lat = -90.0
     lon = -90.0
@@ -71,8 +68,7 @@ def latlon3(mh):
 
 def latlon2(mh):
 
-    '''
-    '''
+    ''' '''
 
     lat = -90.0
     lon = -90.0
@@ -88,8 +84,7 @@ def latlon2(mh):
     val = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     for x, y in lets:
-        val[i * 2] = (ord(x.upper()) - ord('A'),
-                      ord(y.upper()) - ord('A'))
+        val[i * 2] = (ord(x.upper()) - ord('A'), ord(y.upper()) - ord('A'))
         i += 1
         tot += 1
 
@@ -107,7 +102,7 @@ def latlon2(mh):
     i = 0
     res = 10.0
 
-    for x, y in val[0:min(tot, 22 - 1)]:
+    for x, y in val[0 : min(tot, 22 - 1)]:
         lon += res * x
         lat += res * y
         if i % 2:
@@ -123,8 +118,7 @@ def latlon2(mh):
 
 def mh2(lat, lon, length=6):
 
-    '''
-    '''
+    ''' '''
 
     if -90 <= lat < 90:
         pass
@@ -161,8 +155,7 @@ def mh2(lat, lon, length=6):
 
 def mh1(lat, lon, length=6):
 
-    '''
-    '''
+    ''' '''
 
     if -90 <= lat < 90:
         pass
@@ -187,7 +180,7 @@ def mh1(lat, lon, length=6):
         a = divmod(lon, 1)
         b = divmod(lat, 1)
 
-        if not(i % 2):
+        if not (i % 2):
             astring += str(int(a[0])) + str(int(b[0]))
             lon = 24 * a[1]
             lat = 24 * b[1]

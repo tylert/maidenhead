@@ -12,8 +12,7 @@ def main():
     if len(sys.argv) == 2:  # slob city
         stringlength = int(sys.argv[1])
         if stringlength < 2 or stringlength % 2 != 0:
-            raise RuntimeError('String length requested must be even '
-                               'integer > 0.')
+            raise RuntimeError('String length requested must be even ' 'integer > 0.')
     else:
         stringlength = 6
 
