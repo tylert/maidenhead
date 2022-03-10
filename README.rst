@@ -1,6 +1,19 @@
 Maidenhead
 ==========
 
+
+TODO
+----
+
+Finish deprecating the multiple versions of the same functions
+Ensure we use better Python 3 idioms everywhere
+
+* https://treyhunner.com/2019/05/python-builtins-worth-learning/
+
+
+Links
+-----
+
 * http://jidanni.org/geo/maidenhead/index.html
 * https://en.wikipedia.org/wiki/Maidenhead_Locator_System
 
