@@ -11,6 +11,7 @@ GENERATED_FILES =
 
 .PHONY: all
 all: venv
+# all: $(GENERATED_FILES)
 
 ACTIVATE_SCRIPT = $(VENV)/bin/activate
 .PHONY: venv
@@ -18,7 +19,7 @@ venv: $(ACTIVATE_SCRIPT)
 $(ACTIVATE_SCRIPT): requirements.txt
 	@test -d $(VENV) || $(PYTHON) -m venv $(VENV) && \
   source $(ACTIVATE_SCRIPT) && \
-  pip install --upgrade pip setuptools && \
+  pip install --upgrade pip setuptools wheel && \
   pip install --requirement $< && \
   touch $(ACTIVATE_SCRIPT)
 
@@ -27,12 +28,12 @@ venv_upgrade:
 	@rm -rf $(VENV) && \
   $(PYTHON) -m venv $(VENV) && \
   source $(ACTIVATE_SCRIPT) && \
-  pip install --upgrade pip setuptools && \
+  pip install --upgrade pip setuptools wheel && \
   pip install --requirement requirements_bare.txt && \
   pip freeze > requirements.txt && \
   touch $(ACTIVATE_SCRIPT)
 
-# moo:
+# moo: venv
 #   @source $(ACTIVATE_SCRIPT) && \
 #   ./moo.py > $@
 
