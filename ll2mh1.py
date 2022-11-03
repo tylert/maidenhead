@@ -30,7 +30,7 @@ def main():
             raise RuntimeError('Cannot even get the basic items.')
 
         astring = mh1(lat, lon, stringlength)
-        print('{0}'.format(astring))
+        print(f'{astring}')
 
 
 if __name__ == '__main__':

@@ -40,7 +40,7 @@ def c2v(c):
     return v
 
 
-def latlon3(mh):
+def latlon3(mh: str) -> (int, int):
 
     ''' '''
 
@@ -66,7 +66,7 @@ def latlon3(mh):
     return lat, lon
 
 
-def latlon2(mh):
+def latlon2(mh: str) -> (int, int):
 
     ''' '''
 
@@ -116,7 +116,7 @@ def latlon2(mh):
     return lat, lon
 
 
-def mh2(lat, lon, length=6):
+def mh2(lat: int, lon: int, length: int = 6) -> str:
 
     ''' '''
 
@@ -153,7 +153,7 @@ def mh2(lat, lon, length=6):
     return astring
 
 
-def mh1(lat, lon, length=6):
+def mh1(lat: int, lon: int, length: int = 6) -> str:
 
     ''' '''
 

@@ -13,7 +13,7 @@ def main():
         if not mh:
             break
         lat, lon = latlon2(mh)
-        print('{0} {1}'.format(lat, lon))
+        print(f'{lat} {lon}')
 
 
 if __name__ == '__main__':
